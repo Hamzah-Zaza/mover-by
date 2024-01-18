@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the HTML document -->
+    <title>moving Game</title>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Container for the entire game -->
+    <div class="overall-container">
+      <!-- Container for the game elements -->
+      <div class="game-container">
+        <!-- Information box displaying the score -->
+        <div class="info-box" id="infoBox">Score: 0</div>
+        <!-- Information box displaying the remaining lives -->
+        <div class="info-box" id="livesBox">Lives: 3</div>
+
+        <!-- Game over cover displayed at the end of the game -->
+        <div class="game-over-cover" id="gameOverCover">Game Over</div>
+
+        <!-- Game board where the game elements will be displayed -->
+        <div class="game-board" id="gameBoard">
+          <!-- Use JavaScript to generate cells, walls, and collisions -->
+        </div>
+      </div>
+      <!-- Instructions and hints for playing the game -->
+      <p>
+        Instructions: Reach a score of 140 and move into the yellow box to win.
+        <br />
+        use the up, down, right, and left arrow keys to move. Moving into ghosts
+        will<br />
+        cost you a life. However, if you remain in position, you will not lose a
+        life.<br />
+        Hint: Some of the cells on the grid have points.
+        <br />
+        Hint 2: The stationary colored circles are points.
+      </p>
+    </div>
+
+    <!-- Script tag linking to the external JavaScript file -->
+    <script src="script.js"></script>
+  </body>
+</html>

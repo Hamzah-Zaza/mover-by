@@ -1,0 +1,226 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+}
+
+.overall-container {
+  text-align: center;
+}
+
+.game-container {
+  position: relative;
+  display: inline-block;
+}
+
+.info-box {
+  position: absolute;
+  margin: 10px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 18px;
+  z-index: 2;
+}
+
+#infoBox {
+  top: -60px; /* Adjust as needed */
+  left: 0;
+}
+
+#livesBox {
+  top: -60px; /* Adjust as needed */
+  right: 0;
+}
+
+.game-over-cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 410px; /* Adjust as needed to match the game board width */
+  height: 410px; /* Adjust as needed to match the game board height */
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 3;
+  text-align: center; /* Center align the text */
+  line-height: 410px; /* Adjust as needed based on the game-board height */
+  color: white; /* Text color */
+}
+
+.game-board {
+  position: relative;
+  width: 410px; /* Adjust as needed */
+  height: 410px; /* Adjust as needed */
+  background-color: #333;
+  border: 5px solid grey;
+  box-sizing: border-box;
+}
+
+.cell {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: lightgrey;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+.game-board .mover {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  transition: 0.2s; /* Optional: Add transition for smooth movement */
+}
+
+.forbidden {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+}
+
+.collision {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 0%;
+  background-color: grey;
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-0 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: silver; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+.collision-1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: darkred; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: cornsilk; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+.collision-3 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: cyan; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-4 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: pink; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+.collision-5 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-6 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: purple; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+.collision-7 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-8 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: blue; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+.collision-9 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.collision-10 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: green; /* Change this to your desired color */
+  transition: opacity 0.2s; /* Optional: Add transition for smooth visibility change */
+  opacity: 1; /* Initially visible */
+}
+
+.ghost {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: 0.2s; /* Optional: Add transition for smooth movement */
+}
+
+.ghost-0 {
+  background-color: red;
+}
+
+.ghost-1 {
+  background-color: cyan;
+}
+
+.ghost-2 {
+  background-color: pink;
+}
+
+.ghost-3 {
+  background-color: orange;
+}
