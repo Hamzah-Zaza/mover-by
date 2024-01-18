@@ -266,74 +266,74 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Modify handleMoverMovement function to check for winning conditions
-  const handleMoverMovement = (nextX, nextY) => {
-    const forbiddenCell = gameBoard.querySelector(
-      '.forbidden[data-row="' + nextY + '"][data-column="' + nextX + '"]'
-    );
-    const collisionCell = gameBoard.querySelector(
-      '.collision[data-row="' + nextY + '"][data-column="' + nextX + '"]'
-    );
+const handleMoverMovement = (nextX, nextY) => {
+  const forbiddenCell = gameBoard.querySelector(
+    '.forbidden[data-row="' + nextY + '"][data-column="' + nextX + '"]'
+  );
+  const collisionCell = gameBoard.querySelector(
+    '.collision[data-row="' + nextY + '"][data-column="' + nextX + '"]'
+  );
 
-    // Check if the next position is forbidden or a collision cell
-    if (forbiddenCell) {
-      clearInterval(intervalId);
-      moving = false;
-    } else {
-      moverPosition.x = nextX;
-      moverPosition.y = nextY;
-      updateMoverPosition();
+  // Check if the next position is forbidden or a collision cell
+  if (forbiddenCell) {
+    clearInterval(intervalId);
+    moving = false;
+  } else {
+    moverPosition.x = nextX;
+    moverPosition.y = nextY;
+    updateMoverPosition();
 
-      // If it's a collision cell and hasn't been visited, increase the score,
-      // store the new color, change Mover color to the collision cell color
-      if (collisionCell && !isCollisionCellVisited(nextX, nextY)) {
-        score += 10; // Increase the score by 10 (you can adjust this as needed)
-        visitedCollisionCells.push({ x: nextX, y: nextY }); // Mark the collision cell as visited
-        displayScore(); // Function to display the updated score
+    // If it's a collision cell and hasn't been visited, increase the score,
+    // store the new color, change Mover color to the collision cell color
+    if (collisionCell && !isCollisionCellVisited(nextX, nextY)) {
+      score += 10; // Increase the score by 10 (you can adjust this as needed)
+      visitedCollisionCells.push({ x: nextX, y: nextY }); // Mark the collision cell as visited
+      displayScore(); // Function to display the updated score
 
-        // Get the background color of the collision cell
-        const collisionColor = getComputedStyle(collisionCell).backgroundColor;
+      // Get the background color of the collision cell
+      const collisionColor = getComputedStyle(collisionCell).backgroundColor;
 
-        // Change Mover color to the collision cell color
-        mover.style.backgroundColor = collisionColor;
+      // Change Mover color to the collision cell color
+      mover.style.backgroundColor = collisionColor;
 
-        // Optional: Remove the collision cell
-        collisionCell.remove();
+      // Optional: Remove the collision cell
+      collisionCell.remove();
+    }
+
+    // Call handleGhostCollision to check for collisions with ghosts
+    handleGhostCollision();
+
+    // Check if the user has 140 points and reached the winning cell
+    const winningCellCoords = [19, 17];
+    if (
+      score >= 140 &&
+      moverPosition.x === winningCellCoords[1] &&
+      moverPosition.y === winningCellCoords[0]
+    ) {
+      stopGameMovements(); // Stop all movements when winning conditions are met
+      const gameOverCover = document.getElementById("gameOverCover");
+      if (gameOverCover) {
+        // Display "Victory" in the center of the game-over-cover
+        gameOverCover.textContent = "Victory";
+        gameOverCover.style.color = "white";
+        gameOverCover.style.display = "block";
       }
+      return; // Add this to exit the function after winning conditions are met
+    }
 
-      // Call handleGhostCollision to check for collisions with ghosts
-      handleGhostCollision();
-
-      // Check if the user has 140 points and reached the winning cell
-      const winningCellCoords = [19, 17];
-      if (
-        score >= 140 &&
-        moverPosition.x === winningCellCoords[1] &&
-        moverPosition.y === winningCellCoords[0]
-      ) {
-        stopGameMovements(); // Stop all movements when winning conditions are met
-        const gameOverCover = document.getElementById("gameOverCover");
-        if (gameOverCover) {
-          // Display "Victory" in the center of the game-over-cover
-          gameOverCover.textContent = "Victory";
-          gameOverCover.style.color = "white";
-          gameOverCover.style.display = "block";
-        }
-        return; // Add this to exit the function after winning conditions are met
-      }
-
-      // Check if lives have reached 0
-      if (lives <= 0) {
-        stopGameMovements(); // Stop all movements when lives reach 0
-        const gameOverCover = document.getElementById("gameOverCover");
-        if (gameOverCover) {
-          // Display "Defeat" in the center of the game-over-cover
-          gameOverCover.textContent = "Defeat";
-          gameOverCover.style.color = "white";
-          gameOverCover.style.display = "block";
-        }
+    // Check if lives have reached 0
+    if (lives <= 0) {
+      stopGameMovements(); // Stop all movements when lives reach 0
+      const gameOverCover = document.getElementById("gameOverCover");
+      if (gameOverCover) {
+        // Display "Defeat" in the center of the game-over-cover
+        gameOverCover.textContent = "Defeat";
+        gameOverCover.style.color = "white";
+        gameOverCover.style.display = "block";
       }
     }
-  };
+  }
+};
 
   let ghostsStartedMoving = false; // Add this variable to track whether ghosts started moving
 
